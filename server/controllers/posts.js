@@ -1,11 +1,28 @@
 // handler functions for the post routes
 
+import PostMessage from '../models/postMessage.js';
+
+
 const getPosts = async (req, res) => {
-    res.send('This Works');
+    try {
+        const postMessages = await PostMessage.find();
+        res.status(200).json(postMessages);
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 };
 
-const createPost = (req, res) => {
-    res.send('Post Creation');
+const createPost = async (req, res) => {
+   try {
+        const post = req.body;
+        const newPost = new PostMessage(post);
+        await newPost.save();
+        res.status(201).json(newPost);
+    }
+    catch (error) {
+        res.status(409).json({ message: error.message });
+    }
 };
 
 export {
