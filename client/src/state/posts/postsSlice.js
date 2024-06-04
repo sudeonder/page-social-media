@@ -27,6 +27,17 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(createPost.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        state.loading = false;
+        //state.data = action.payload;
+      })
+      .addCase(createPost.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
@@ -35,6 +46,11 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   // fetch data from api
   // return data as payload
   const response = await axios.get(POST_URL);
+  return response.data;
+});
+
+export const createPost = createAsyncThunk("posts/createPost", async (post) => {
+  const response = await axios.post(POST_URL, post);
   return response.data;
 });
 

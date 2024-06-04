@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./styles.css";
+import { createPost } from "../../state/posts/postsSlice";
 
 const Form = () => {
+  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state) => state.posts);
+
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -12,7 +17,12 @@ const Form = () => {
     selectedFile: "",
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createPost(postData));
+    clearForm();
+  };
+
   const clearForm = () => {
     setPostData({
       creator: "",
