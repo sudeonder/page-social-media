@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 
 import store from "./state/store.js";
 import App from "./App";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "./theme";
 
 const rootElement = document.getElementById("root");
 
@@ -13,6 +15,8 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 root.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Provider>
 );
