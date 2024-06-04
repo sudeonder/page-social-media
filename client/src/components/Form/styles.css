@@ -1,0 +1,22 @@
+.root {
+    margin : 0;
+}
+
+.paper {
+    padding : 20px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.file-input{
+    width: 97%;
+    margin: 10px 0;
+}
+
+.button-submit {
+    margin-bottom : 10px;
+}
