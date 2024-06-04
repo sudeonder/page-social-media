@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, AppBar, Typography, Grow, Grid } from "@mui/material/";
+import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
 import { StyledEngineProvider } from "@mui/material/styles";
 
 import Posts from "./components/Posts/Posts";
