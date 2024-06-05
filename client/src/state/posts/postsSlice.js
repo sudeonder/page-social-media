@@ -3,7 +3,7 @@ import axios from "axios";
 import { POST_URL } from "../../api/index";
 
 const initialState = {
-  data: null,
+  data: [],
   loading: false,
   error: null,
 };
@@ -33,9 +33,20 @@ const postsSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.loading = false;
-        //state.data = action.payload;
+        state.data = [...state.data, action.payload];
       })
       .addCase(createPost.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(deletePost.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = state.data.filter((post) => post._id !== action.payload);
+      })
+      .addCase(deletePost.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
@@ -52,6 +63,11 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 export const createPost = createAsyncThunk("posts/createPost", async (post) => {
   const response = await axios.post(POST_URL, post);
   return response.data;
+});
+
+export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
+  await axios.delete(`${POST_URL}/${id}`);
+  return id;
 });
 
 export const {} = postsSlice.actions;

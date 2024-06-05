@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import FileBase from "react-file-base64";
 
 import "./styles.css";
 import { createPost } from "../../state/posts/postsSlice";
@@ -75,6 +76,15 @@ const Form = () => {
           value={postData.tags}
           onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
         />
+        <div>
+          <FileBase
+            type="file"
+            multiple={false}
+            onDone={({ base64 }) =>
+              setPostData({ ...postData, selectedFile: base64 })
+            }
+          />
+        </div>
         <Button
           className="button-submit"
           variant="container"
