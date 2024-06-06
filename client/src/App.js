@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
 import { StyledEngineProvider } from "@mui/material/styles";
+import Masonry from "@mui/lab/Masonry";
 
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";

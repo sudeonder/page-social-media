@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   Container,
   AppBar,
@@ -8,6 +9,7 @@ import {
   Grid,
   CircularProgress,
 } from "@mui/material/";
+import Masonry from "@mui/lab/Masonry";
 
 import { fetchPosts } from "../../state/posts/postsSlice";
 import Post from "./Post/Post";
@@ -24,13 +26,11 @@ const Posts = () => {
   return loading ? (
     <CircularProgress />
   ) : (
-    <Grid container alignItems="stretch" spacing="4">
+    <Masonry columns={2} spacing={2}>
       {data.map((post) => (
-        <Grid item key={post._id} xs={12} sm={6} md={6}>
-          <Post post={post} />
-        </Grid>
+        <Post post={post} />
       ))}
-    </Grid>
+    </Masonry>
   );
 };
 

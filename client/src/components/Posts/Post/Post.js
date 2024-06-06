@@ -24,7 +24,7 @@ const Post = ({ post }) => {
         className="media"
         component="img"
         alt={post.title}
-        height="140"
+        height={post.tags === "long" ? 400 : 200}
         image={post.selectedFile}
       />
       <div className="overlay">
