@@ -35,3 +35,20 @@
     background-color: #b0bec5 ;
 }
 
+.file-button {
+    height: 40px;
+    margin: 10px;
+}
+
+.file-button input[type="file" i]::-webkit-file-upload-button{
+    margin-bottom : 10px;
+    background-color: #78909c;
+    border: #b0bec5;
+    border-radius: 10%;
+    height: 20px;
+    font-size: 16px;
+    color: white;
+
+  
+}
+
